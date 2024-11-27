@@ -1,0 +1,243 @@
+{% extends 'customer/base.html' %}
+
+{% block content %}
+<div class="container mb-5">
+    <div class="row justify-content-center mt-1">
+        <div class="col-md-12 col-sm-12 p-4" style="background-color: rgba(0, 0, 0, 0.7); border-radius: 10px;">
+            <form method="POST">
+                {% csrf_token %}
+
+                <!-- Common Styling for Sections -->
+                <style>
+                    .category-section {
+                        background-color: rgba(255, 255, 255, 0.9);
+                        border-radius: 10px;
+                        padding: 20px;
+                        margin-bottom: 40px;
+                    }
+                    .category-title {
+                        color: #ff9800;
+                        font-weight: bold;
+                        text-shadow: 1px 1px 2px black;
+                    }
+                    .food-image {
+                        width: 100%;
+                        height: auto;
+                        max-width: 150px;
+                        max-height: 100px;
+                        object-fit: cover;
+                        border-radius: 10px;
+                        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                    }
+                    .food-item {
+                        color: black;
+                        font-size: 20px;
+                    }
+                    .food-description {
+                        font-size: 14px;
+                        color: #555;
+                    }
+                    .food-price {
+                        font-size: 18px;
+                        color: #e91e63;
+                        font-weight: bold;
+                    }
+                    hr {
+                        border: 1px solid #e0e0e0;
+                    }
+                </style>
+
+                <!-- Salads Section -->
+                <div class="pt-5 category-section">
+                    <h3 class="text-center category-title">Salads</h3>
+                    {% for salad in Salads %}
+                    <div class="row mt-4 align-items-center">
+                        <div class="col-md-2 col-sm-12">
+                            <img class="food-image" src="{{ salad.image.url }}" alt="{{ salad.name }}"/>
+                        </div>
+                        <div class="col-md-8 col-sm-12">
+                            <div class="d-flex flex-row align-items-center">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ salad.pk }}">
+                                    <label class="form-check-label food-item">{{ salad.name }}</label>
+                                </div>
+                                <span class="food-price pl-5">₹{{ salad.price }}</span>
+                            </div>
+                            <p class="food-description">{{ salad.description }}</p>
+                        </div>
+                    </div>
+                    <hr />
+                    {% endfor %}
+                </div>
+
+                <!-- Sandwiches Section -->
+                <div class="pt-5 category-section">
+                    <h3 class="text-center category-title">Sandwiches</h3>
+                    {% for sandwich in Sandwich %}
+                    <div class="row mt-4 align-items-center">
+                        <div class="col-md-2 col-sm-12">
+                            <img class="food-image" src="{{ sandwich.image.url }}" alt="{{ sandwich.name }}"/>
+                        </div>
+                        <div class="col-md-8 col-sm-12">
+                            <div class="d-flex flex-row align-items-center">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ sandwich.pk }}">
+                                    <label class="form-check-label food-item">{{ sandwich.name }}</label>
+                                </div>
+                                <span class="food-price pl-5">₹{{ sandwich.price }}</span>
+                            </div>
+                            <p class="food-description">{{ sandwich.description }}</p>
+                        </div>
+                    </div>
+                    <hr />
+                    {% endfor %}
+                </div>
+
+                <!-- Pasta Section -->
+                <div class="pt-5 category-section">
+                    <h3 class="text-center category-title">Pasta</h3>
+                    {% for pasta in Pasta %}
+                    <div class="row mt-4 align-items-center">
+                        <div class="col-md-2 col-sm-12">
+                            <img class="food-image" src="{{ pasta.image.url }}" alt="{{ pasta.name }}"/>
+                        </div>
+                        <div class="col-md-8 col-sm-12">
+                            <div class="d-flex flex-row align-items-center">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ pasta.pk }}">
+                                    <label class="form-check-label food-item">{{ pasta.name }}</label>
+                                </div>
+                                <span class="food-price pl-5">₹{{ pasta.price }}</span>
+                            </div>
+                            <p class="food-description">{{ pasta.description }}</p>
+                        </div>
+                    </div>
+                    <hr />
+                    {% endfor %}
+                </div>
+
+                <!-- Burgers Section -->
+                <div class="pt-5 category-section">
+                    <h3 class="text-center category-title">Burgers</h3>
+                    {% for burger in Burger %}
+                    <div class="row mt-4 align-items-center">
+                        <div class="col-md-2 col-sm-12">
+                            <img class="food-image" src="{{ burger.image.url }}" alt="{{ burger.name }}"/>
+                        </div>
+                        <div class="col-md-8 col-sm-12">
+                            <div class="d-flex flex-row align-items-center">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ burger.pk }}">
+                                    <label class="form-check-label food-item">{{ burger.name }}</label>
+                                </div>
+                                <span class="food-price pl-5">₹{{ burger.price }}</span>
+                            </div>
+                            <p class="food-description">{{ burger.description }}</p>
+                        </div>
+                    </div>
+                    <hr />
+                    {% endfor %}
+                </div>
+
+                <!-- Pizzas Section -->
+                <div class="pt-5 category-section">
+                    <h3 class="text-center category-title">Pizzas</h3>
+                    {% for pizza in Pizza %}
+                    <div class="row mt-4 align-items-center">
+                        <div class="col-md-2 col-sm-12">
+                            <img class="food-image" src="{{ pizza.image.url }}" alt="{{ pizza.name }}"/>
+                        </div>
+                        <div class="col-md-8 col-sm-12">
+                            <div class="d-flex flex-row align-items-center">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ pizza.pk }}">
+                                    <label class="form-check-label food-item">{{ pizza.name }}</label>
+                                </div>
+                                <span class="food-price pl-5">₹{{ pizza.price }}</span>
+                            </div>
+                            <p class="food-description">{{ pizza.description }}</p>
+                        </div>
+                    </div>
+                    <hr />
+                    {% endfor %}
+                </div>
+
+                <div class="form-group pt-3">
+                    <label for="name" style="color: white;">Full Name</label>
+                    <input required class="form-control" type="text" placeholder="Your Name" name="name" />
+                </div>
+
+                <div class="form-group pt-3">
+                    <label for="name" style="color: white;">Email Address</label>
+                    <input required class="form-control" type="text" placeholder="example@company.com" name="email" />
+                </div>
+
+                <div class="form-group pt-3">
+                    <label for="name" style="color: white;">Street Address</label>
+                    <input required class="form-control" type="text" placeholder="1234 Main St" name="street" />
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group pt-3">
+                            <label for="name" style="color: white;">City</label>
+                            <input required class="form-control" type="text" placeholder="San Francisco" name="city" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group pt-3">
+                            <label for="name" style="color: white;">State</label>
+                            <input required class="form-control" type="text" placeholder="CA" name="state" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group pt-3">
+                            <label for="name" style="color: white;">Zip Code</label>
+                            <input required class="form-control" type="text" placeholder="94117" name="zip" />
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Button trigger modal -->
+                <center>
+                    <button 
+                        type="button" 
+                        style="background-color: #FF6B35; color: white; font-size: 20px; padding: 15px 30px; border: none; border-radius: 5px;" 
+                        data-toggle="modal" 
+                        data-target="#submitModal">
+                        Submit Order!
+                    </button>
+                </center>
+                
+                  
+  
+                  <!-- Modal -->
+                  <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="submitModalLabel">Submit Your Order!</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-light" data-dismiss="modal">Go Back</button>
+                          <button type="submit" class="btn btn-dark">Place Order!</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+  
+              </form>
+          </div>
+      </div>
+  </div>
+  {% endblock content %}
+
+
+
+
+
